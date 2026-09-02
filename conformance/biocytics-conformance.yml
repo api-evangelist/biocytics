@@ -1,0 +1,75 @@
+generated: '2026-09-02'
+method: searched
+source: https://biocytics.com/biodice/
+docs: https://biocytics.com/biodice/
+note: >-
+  BioCytics publishes no OpenAPI, AsyncAPI, GraphQL, gRPC or WSDL contract, and no developer portal,
+  so nothing here is derived from a contract. Every entry below is either (a) a standard NAMED IN
+  PROSE on the BioDICE product page, recorded as claimed-but-unverifiable because there is no
+  published contract, endpoint or conformance statement to test it against, or (b) a cross-cutting
+  web/API standard settled by a live unauthenticated probe of biocytics.com. No Compliance pointer is
+  emitted: the "Accreditations and Certifications" block on https://biocytics.com/our-story/ carries
+  logos and an IRB/Research-Use-Only footnote but names no auditable certification (no SOC 2,
+  ISO 27001, HIPAA attestation, CLIA or CAP number in machine-readable or textual form).
+standards:
+- id: openehr
+  conforms: false
+  claimed: true
+  evidence: >-
+    The BioDICE page states its EMR module is "Incorporating the OpenEHR data standard - an EMR system
+    specifically designed and developed for Cellular Therapy clinical trial workflows", and openEHR
+    International lists BioCytics, Inc. as a Bronze industry partner
+    (https://django-legacy-site.openehr.org/community/industry_partners_detail/biocytics-inc.html, 200).
+    Marked conforms:false because conformance is not externally testable: BioCytics publishes no
+    openEHR REST endpoint, no archetype or operational-template export, no AQL surface, and no CKM
+    contribution reachable from biocytics.com. Probes for /rest/openehr, /ehrbase, /openehr and
+    /graphql on biocytics.com all returned 404.
+- id: hl7-fhir
+  conforms: false
+  claimed: true
+  evidence: >-
+    The BioDICE OmniQuery module is described as unlocking "data stored in multiple formats and
+    standards (openEHR, HL7, FHIR, OMOP, relational databases, CSV/JSON/XML)". No FHIR base URL,
+    CapabilityStatement or /metadata endpoint is published on any BioCytics host, so the claim cannot
+    be verified. This is an internal ingestion capability described in marketing copy, not a served
+    FHIR API.
+- id: smart-on-fhir
+  conforms: false
+  claimed: true
+  evidence: >-
+    The BioDICE page states OpenDICE will use "SMART-on-FHIR and SMART-on-openEHR standards" plus the
+    Sequoia TEFCA network for patient access to multi-institutional records. OpenDICE is described as
+    forthcoming; opendice.com is a parked Afternic listing that redirects to /lander, not a BioCytics
+    property, and /.well-known/smart-configuration was not served on biocytics.com.
+- id: omop-cdm
+  conforms: false
+  claimed: true
+  evidence: >-
+    OMOP is named in the same OmniQuery source-format list on https://biocytics.com/biodice/. No OMOP
+    CDM schema, vocabulary release or data-access surface is published.
+- id: oauth2
+  conforms: false
+  evidence: >-
+    /.well-known/oauth-authorization-server returns 404 on biocytics.com. The only authentication
+    surface advertised by the host is WordPress application-passwords, exposed in the CMS's default
+    /wp-json/ index.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on biocytics.com.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on biocytics.com; no disclosure policy or contact is published.
+- id: rfc8615-well-known
+  conforms: false
+  evidence: >-
+    No /.well-known/ document of any kind is served on biocytics.com; all seven probed paths returned
+    the WordPress 404 template. See well-known/biocytics-well-known.yml.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No HTTP API is published, so there is no error envelope to assess.
+- id: openapi
+  conforms: false
+  evidence: >-
+    /openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs, /docs, /redoc, /api,
+    /apis, /developers and /developer all return the WordPress 404 template on biocytics.com. No
+    OpenAPI, Swagger, AsyncAPI, GraphQL SDL, .proto or WSDL is published on any BioCytics host.
